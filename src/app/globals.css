@@ -2,7 +2,13 @@
 
 :root {
   --background: #ffffff;
+  --background-secondary: #f5f6fa;
   --foreground: #171717;
+  --primary: #4880ff;
+  --text: #202224;
+  --text-secondary: #202224;
+  --border: #d5d5d5;
+  --input: #f5f6fa;
 }
 
 @theme inline {
@@ -10,6 +16,20 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-primary: var(--c-primary);
+  --color-primary-dark: var(--c-primary-dark);
+  --color-secondary: var(--c-secondary);
+  --color-background: var(--c-background);
+  --color-background-dark: var(--c-background-dark);
+  --color-text: var(--c-text);
+  --color-card: var(--c-card);
+  --color-border: var(--c-border);
+  --color-input: var(--c-input);
+  --color-danger: var(--c-danger);
+  --color-danger-content: var(--c-danger-content);
+  --color-success: var(--c-success);
+  --color-warning: var(--c-warning);
+  --color-info: var(--c-info);
 }
 
 @media (prefers-color-scheme: dark) {
