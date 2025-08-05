@@ -1,17 +1,20 @@
-import { Menu } from "antd";
-import Sider from "antd/es/layout/Sider";
-import type { MenuProps } from "antd";
+'use client';
+
+import { Divider, Menu } from 'antd';
+import Sider from 'antd/es/layout/Sider';
+import type { MenuProps } from 'antd';
 import {
-  FileTextOutlined,
-  HistoryOutlined,
-  HomeOutlined,
-  PieChartOutlined,
-  SettingOutlined,
+  AppstoreOutlined,
+  DashboardOutlined,
+  DatabaseOutlined,
+  HeartOutlined,
+  SendOutlined,
   UnorderedListOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
+import { useState } from 'react';
 // import { useLocation, useNavigate } from 'react-router'
 
-type MenuItem = Required<MenuProps>["items"][number];
+type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
   label: React.ReactNode,
@@ -28,33 +31,36 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("Dashboard", "/", <HomeOutlined />),
-  getItem("Analytics", "/analytics", <PieChartOutlined />),
-  getItem("History", "/history", <HistoryOutlined />),
-  getItem("Todo", "/tasks", <UnorderedListOutlined />),
-  getItem("Report", "/report", <FileTextOutlined />),
-  getItem("Settings", "/settings", <SettingOutlined />),
+  getItem('Dashboard', '/', <DashboardOutlined />),
+  getItem('Products', '/products', <AppstoreOutlined />),
+  getItem('Favorites', '/favorites', <HeartOutlined />),
+  getItem('Inbox', '/inbox', <SendOutlined />),
+  getItem('Order List', '/order-list', <UnorderedListOutlined />),
+  getItem('Product Stock', '/product-stock', <DatabaseOutlined />),
 ];
 
 export const Sidebar = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const [selectedPage, setSelectedPage] = useState('/');
   // const location = useLocation()
   // const navigate = useNavigate()
 
   return (
-    <Sider theme="light">
-      <h1 className="w-full flex justify-center items-center font-extrabold text-xl h-[68px]">
-        Dash<span className="text-[var(--primary)]">Stack</span>
+    <Sider className="!bg-card" collapsed={collapsed}>
+      <h1 className="text-center py-4 my-1 font-extrabold text-xl text-primary">
+        Dash<span className="text-text">Stack</span>
       </h1>
       <Menu
-        // selectedKeys={[location.pathname]}
-        // onClick={({ key }) => navigate(key)}
         mode="inline"
         items={items}
         style={{
-          paddingInline: "0.5rem",
-          border: "none",
+          paddingInline: '0.5rem',
+          border: 'none',
         }}
+        selectedKeys={[selectedPage]}
+        onSelect={({ key }) => setSelectedPage(key as string)}
       />
+      <Divider />
     </Sider>
   );
 };

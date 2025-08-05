@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useMemo } from 'react'
 import { useDarkLightContext } from './DarkLightProvider'
 import { MAIN_COLORS } from '../constants/COLORS'
