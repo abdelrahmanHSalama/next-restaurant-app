@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useSideBarProvider } from "@/services/context";
-import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
-import { ListIcon } from "@phosphor-icons/react";
-import { Button, Input, Layout, theme } from "antd";
+import { useSideBarProvider } from '@/services/context';
+import { MenuOutlined, SearchOutlined } from '@ant-design/icons';
+import { ListIcon } from '@phosphor-icons/react';
+import { Button, Input, Layout, theme } from 'antd';
 
 const { Header: AntHeader } = Layout;
 
@@ -22,7 +22,8 @@ export const Header = () => {
         display: 'flex',
         alignItems: 'center',
         gap: '1rem',
-      }}>
+      }}
+    >
       <div className={`py-4 my-2 ${collapsed ? 'hidden' : ''}`}>
         <ListIcon
           className="size-6 mx-auto cursor-pointer"
@@ -31,9 +32,7 @@ export const Header = () => {
       </div>
       <Input
         placeholder="Search"
-        prefix={
-          <SearchOutlined style={{ color: 'var(--color-text-secondary)' }} />
-        }
+        prefix={<SearchOutlined style={{ color: 'var(--color-text-secondary)' }} />}
         style={{
           width: '50%',
           maxWidth: '200px',

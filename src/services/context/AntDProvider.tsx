@@ -3,14 +3,8 @@ import React from 'react';
 import { useDarkLightContext } from './DarkLightProvider';
 import { ANTD_THEME, ANTD_THEME_DARK } from '../constants';
 
-export const AntDProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const AntDProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isDark } = useDarkLightContext();
 
-  return (
-    <ConfigProvider theme={isDark ? ANTD_THEME_DARK : ANTD_THEME}>
-      {children}
-    </ConfigProvider>
-  );
+  return <ConfigProvider theme={isDark ? ANTD_THEME_DARK : ANTD_THEME}>{children}</ConfigProvider>;
 };

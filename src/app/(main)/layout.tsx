@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../globals.css';
 import { Layout } from 'antd';
 import { Header, Sidebar } from '@/components/ui';
 import { Content } from 'antd/es/layout/layout';

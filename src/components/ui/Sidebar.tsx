@@ -40,72 +40,36 @@ const siderStyle: React.CSSProperties = {
 
 type MenuItem = Required<MenuProps>['items'][number];
 
-function getItem(
-  label: React.ReactNode,
-  key: string,
-  icon: React.ReactNode
-): MenuItem {
+function getItem(label: React.ReactNode, key: string, icon: React.ReactNode): MenuItem {
   return {
     key,
-    icon: (
-      <span className="flex items-center justify-center !align-middle">
-        {icon}
-      </span>
-    ),
+    icon: <span className="flex items-center justify-center !align-middle">{icon}</span>,
     label,
   };
 }
 
 const mainMenuItems: MenuItem[] = [
   getItem('Dashboard', '/', <GaugeIcon className="size-6" />),
-  getItem(
-    'Products',
-    '/products',
-    <SquaresFourIcon className="size-6" />
-  ),
-  getItem(
-    'Favorites',
-    '/favorites',
-    <HeartStraightIcon className="size-6" />
-  ),
+  getItem('Products', '/products', <SquaresFourIcon className="size-6" />),
+  getItem('Favorites', '/favorites', <HeartStraightIcon className="size-6" />),
   getItem('Inbox', '/inbox', <ChatsIcon className="size-6" />),
-  getItem(
-    'Order List',
-    '/order-list',
-    <ListChecksIcon className="size-6" />
-  ),
-  getItem(
-    'Product Stock',
-    '/product-stock',
-    <DatabaseIcon className="size-6" />
-  ),
+  getItem('Order List', '/order-list', <ListChecksIcon className="size-6" />),
+  getItem('Product Stock', '/product-stock', <DatabaseIcon className="size-6" />),
 ];
 
 const pagesMenuItems: MenuItem[] = [
   getItem('Pricing', '/pricing', <GiftIcon className="size-6" />),
-  getItem(
-    'Calendar',
-    '/calendar',
-    <CalendarDotsIcon className="size-6" />
-  ),
+  getItem('Calendar', '/calendar', <CalendarDotsIcon className="size-6" />),
   getItem('To-Do', '/todo', <ClipboardIcon className="size-6" />),
   getItem('Contact', '/contact', <UsersIcon className="size-6" />),
   getItem('Invoice', '/invoice', <MoneyIcon className="size-6" />),
-  getItem(
-    'UI Elements',
-    '/ui-elements',
-    <ChartBarIcon className="size-6" />
-  ),
+  getItem('UI Elements', '/ui-elements', <ChartBarIcon className="size-6" />),
   getItem('Team', '/team', <UserIcon className="size-6" />),
   getItem('Table', '/table', <GridNineIcon className="size-6" />),
 ];
 
 const settingsMenuItems: MenuItem[] = [
-  getItem(
-    'Settings',
-    '/settings',
-    <GearSixIcon className="size-6" />
-  ),
+  getItem('Settings', '/settings', <GearSixIcon className="size-6" />),
   getItem('Logout', '/logout', <PowerIcon className="size-6" />),
 ];
 
@@ -121,9 +85,7 @@ const renderMenuSection = (
     selectedKeys={[selectedKey]}
     onSelect={({ key }) => onSelect(key)}
     style={{ border: 'none' }}
-    className={`*:!h-[50px] *:!leading-[50px] *:!my-0 *:!px-4 ${
-      collapsed ? '!px-0' : '!px-6'
-    }`}
+    className={`*:!h-[50px] *:!leading-[50px] *:!my-0 *:!px-4 ${collapsed ? '!px-0' : '!px-6'}`}
   />
 );
 
@@ -139,15 +101,12 @@ export const Sidebar = () => {
   };
 
   return (
-    <Sider
-      className="!bg-card"
-      collapsed={collapsed}
-      width={240}
-      style={siderStyle}>
+    <Sider className="!bg-card" collapsed={collapsed} width={240} style={siderStyle}>
       <h1
         className={`text-center py-4 my-2 font-extrabold text-xl text-primary ${
           collapsed ? 'hidden' : ''
-        }`}>
+        }`}
+      >
         Dash<span className="text-text">Stack</span>
       </h1>
 
