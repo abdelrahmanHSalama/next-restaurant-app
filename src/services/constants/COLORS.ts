@@ -8,6 +8,7 @@ export const MAIN_COLORS = {
     border: '#D5D5D5',
     input: '#F5F6FA',
     card: '#FFFFFF',
+    'auth-input': '#f1f4f9',
   },
   dark: {
     primary: '#4880FF',

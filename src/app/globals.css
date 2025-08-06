@@ -14,6 +14,7 @@
   --color-success: var(--c-success);
   --color-warning: var(--c-warning);
   --color-info: var(--c-info);
+  --color-auth-input: var(--c-auth-input);
   --font-main: 'Nunito Sans', sans-serif;
 }
 .ant-menu-item-selected {
