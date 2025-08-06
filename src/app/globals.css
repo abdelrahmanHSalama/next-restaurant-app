@@ -14,9 +14,23 @@
   --color-success: var(--c-success);
   --color-warning: var(--c-warning);
   --color-info: var(--c-info);
-  --font-main: Arial, Helvetica, sans-serif;
+  --font-main: 'Nunito Sans', sans-serif;
 }
 .ant-menu-item-selected {
   background-color: var(--c-primary) !important;
   color: white !important;
+  overflow: visible !important;
+}
+.ant-menu-item-selected::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -33px;
+  width: 9px;
+  height: 100%;
+  background-color: var(--c-primary) !important;
+  border-radius: 4px;
+}
+.ant-menu-title-content {
+  margin: 0 0 0 16px !important;
 }
