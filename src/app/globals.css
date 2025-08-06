@@ -32,6 +32,10 @@
   background-color: var(--c-primary) !important;
   border-radius: 4px;
 }
+.ant-layout-sider-collapsed .ant-menu-item-selected::before {
+  left: -10px;
+  width: 4px;
+}
 .ant-menu-title-content {
   margin: 0 0 0 16px !important;
 }
