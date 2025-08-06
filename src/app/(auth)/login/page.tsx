@@ -1,19 +1,39 @@
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
+import { GoogleOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Input } from 'antd';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { cookies } from 'next/headers';
+// import Link from 'next/link';
 
 const Login = () => {
+  const locale = cookies().get('locale')?.value || 'en';
+  const t = useTranslations('HomePage');
+
   return (
     <main className="flex items-center justify-center h-screen bg-primary">
       <div className="w-[1440px] h-full flex items-center justify-center ">
         <div className="w-[43.75%] h-[68%] bg-card rounded-2xl flex items-center">
-          <div className="flex justify-between items-center flex-col w-full space-y-2">
+          <div className="flex justify-between items-center flex-col w-full space-y-8">
             <div className="text-center">
-              <h1 className="text-[2rem] font-bold font-main">Login to Account</h1>
-              <h2 className="text-lg text-text">
+              <h1 className="text-[2rem] font-bold font-main">{t('title')}</h1>
+              {/* <h2 className="text-lg text-text">
                 Please enter your email and password to continue
-              </h2>
+              </h2> */}
+              <h2>{t('subtitle')}</h2>
             </div>
-            <div className="w-[82%] space-y-1">
+            <Button>
+              {locale === 'en' ? (
+                <>
+                  <GoogleOutlined />
+                  {t('googleBtn')}
+                </>
+              ) : (
+                <>
+                  {t('googleBtn')} <GoogleOutlined />
+                </>
+              )}
+            </Button>
+            {/* <div className="w-[82%] space-y-1">
               <h3 className="text-text font-semibold">Email address:</h3>
               <Input
                 className="w-full"
@@ -57,7 +77,8 @@ const Login = () => {
               <Link href="" className="text-primary underline">
                 Create Account
               </Link>
-            </p>
+            </p> */}
+            <LanguageSwitcher />
           </div>
         </div>
       </div>
