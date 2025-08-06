@@ -1,4 +1,3 @@
-// Header and Sidebar is missing.
 
 export const MAIN_COLORS = {
   light: {
@@ -9,6 +8,10 @@ export const MAIN_COLORS = {
     input: '#F5F6FA',
     card: '#FFFFFF',
     'auth-input': '#f1f4f9',
+    danger: '#EF3826',
+    success: '#00B69B',
+    warning: '#FFA756',
+    info: '#6226EF',
   },
   dark: {
     primary: '#4880FF',
@@ -17,5 +20,9 @@ export const MAIN_COLORS = {
     border: '#979797',
     input: '#323D4E',
     card: '#273142',
+    danger: '#EF3826',
+    success: '#00B69B',
+    warning: '#FFA756',
+    info: '#6226EF',
   },
 };

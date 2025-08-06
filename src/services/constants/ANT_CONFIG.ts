@@ -24,7 +24,11 @@ export const ANTD_THEME: ThemeConfig = {
     colorBgContainer: MAIN_COLORS.light.card,
     ...MAIN_THEME_TOKEN,
   },
-  components: {},
+  components: {
+    Layout: {
+      siderBg: MAIN_COLORS.light.card,
+    },
+  },
 };
 
 export const ANTD_THEME_DARK: ThemeConfig = {
@@ -37,5 +41,9 @@ export const ANTD_THEME_DARK: ThemeConfig = {
     colorBgContainer: MAIN_COLORS.dark.card,
     ...MAIN_THEME_TOKEN,
   },
-  components: {},
+  components: {
+    Layout: {
+      siderBg: MAIN_COLORS.dark.card,
+    },
+  },
 };

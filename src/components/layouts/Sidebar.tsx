@@ -85,7 +85,7 @@ const renderMenuSection = (
     selectedKeys={[selectedKey]}
     onSelect={({ key }) => onSelect(key)}
     style={{ border: 'none' }}
-    className={`*:!h-[50px] *:!leading-[50px] *:!my-0 *:!px-4 ${collapsed ? '!px-0' : '!px-6'}`}
+    className={`*:!h-[50px] *:!leading-[50px] *:!my-0 *:!px-4 ${collapsed ? '!px-1' : '!px-6'}`}
   />
 );
 
@@ -101,7 +101,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <Sider className="!bg-card" collapsed={collapsed} width={240} style={siderStyle}>
+    <Sider collapsed={collapsed} width={240} style={siderStyle} className='shadow-xs'>
       <h1
         className={`text-center py-4 my-2 font-extrabold text-xl text-primary ${
           collapsed ? 'hidden' : ''
@@ -120,7 +120,7 @@ export const Sidebar = () => {
       {renderMenuSection(mainMenuItems, pathname, handleSelect, collapsed)}
       <Divider style={{ margin: '16px 0' }} />
 
-      {!collapsed && <p className="text-text/65 mx-6 my-4 px-[30px]">Pages</p>}
+      {!collapsed && <p className="text-text/75 mx-6 my-4 px-[30px]">Pages</p>}
 
       {renderMenuSection(pagesMenuItems, pathname, handleSelect, collapsed)}
       <Divider style={{ margin: '16px 0' }} />
