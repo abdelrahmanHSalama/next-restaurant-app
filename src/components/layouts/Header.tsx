@@ -10,7 +10,7 @@ export const Header = () => {
   const { collapsed, setCollapsed } = useSideBarProvider();
 
   return (
-    <div className="flex items-center justify-between gap-4 md:gap-0 px-4 md:px-8 py-3 shadow-xs h-18 bg-card">
+    <header className="flex items-center justify-between gap-4 md:gap-0 px-4 md:px-8 py-3 shadow-xs h-18 bg-card">
       <div className="flex items-center gap-2 md:gap-6">
         <div className={`py-4 my-2 ${collapsed ? 'hidden' : ''}`}>
           <ListIcon
@@ -23,7 +23,7 @@ export const Header = () => {
           id="search-input"
           placeholder="Search"
           prefix={<SearchOutlined className="!text-text/50 *:!size-4" />}
-          className="!bg-input !rounded-3xl flex-1 md:!min-w-100"
+          className="!bg-input !rounded-3xl flex-1 lg:!min-w-100"
         />
       </div>
       <div className="flex items-center gap-2 md:gap-6">
@@ -53,6 +53,6 @@ export const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
