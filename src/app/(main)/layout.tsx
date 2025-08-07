@@ -23,7 +23,7 @@ export default function RootLayout({
             <Sidebar />
             <Layout>
               <Header />
-              <Content style={{ marginInline: '1rem' }}>{children}</Content>
+              <Content className="p-4 md:p-[30px]">{children}</Content>
             </Layout>
           </Layout>
         </UiProvider>

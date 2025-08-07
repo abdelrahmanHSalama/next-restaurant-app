@@ -1,0 +1,71 @@
+'use client'
+import {
+  ChartLineUpIcon,
+  ClockCounterClockwiseIcon,
+  CubeIcon,
+  UsersIcon,
+} from '@phosphor-icons/react';
+import { PageTitle } from '../ui';
+import KPICard from './KPICard';
+export type KPIDataType = {
+  title: string;
+  total: number;
+  rate: string;
+  description: string;
+  dir: 'up' | 'down';
+  tag: 'info' | 'warning' | 'success' | 'danger';
+  icon: React.ReactNode;
+};
+const KPIData: KPIDataType[] = [
+  {
+    title: 'users',
+    total: 40689,
+    rate:"8.5%",
+    description: 'Up from yesterday',
+    dir: 'up',
+    tag: 'info',
+    icon: <UsersIcon size={32} color="var(--color-info)" />,
+  },
+  {
+    title: 'orders',
+    total: 10293,
+    rate:'1.3%',
+    description: 'Up from past week',
+    dir: 'up',
+    tag: 'warning',
+    icon: <CubeIcon size={32} color="var(--color-warning)" />,
+  },
+  {
+    title: 'sales',
+    total: 89000,
+    rate:"4.3%",
+    description: 'Down from yesterday',
+    dir: 'down',
+    tag: 'success',
+    icon: <ChartLineUpIcon size={32} color="var(--color-success)" />,
+  },
+  {
+    title: 'pending',
+    total: 2040,
+    rate:"1.8%",
+    description: 'Up from yesterday',
+    dir: 'up',
+    tag: 'danger',
+    icon: <ClockCounterClockwiseIcon size={32} color="var(--color-danger)" />,
+  },
+];
+
+const Dashboard = () => {
+  return (
+    <>
+      <PageTitle title="dashboard" />
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {KPIData.map((item) => (
+          <KPICard key={item.title} item={item} />
+        ))}
+      </section>
+    </>
+  );
+};
+
+export default Dashboard;
