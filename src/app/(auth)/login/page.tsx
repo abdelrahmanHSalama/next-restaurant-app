@@ -1,12 +1,9 @@
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import { GoogleOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Input } from 'antd';
+import { Button } from 'antd';
 import { useTranslations } from 'next-intl';
-import { cookies } from 'next/headers';
-// import Link from 'next/link';
 
 const Login = () => {
-  const locale = cookies().get('locale')?.value || 'en';
   const t = useTranslations('HomePage');
 
   return (
@@ -16,68 +13,12 @@ const Login = () => {
           <div className="flex justify-between items-center flex-col w-full space-y-8">
             <div className="text-center">
               <h1 className="text-[2rem] font-bold font-main">{t('title')}</h1>
-              {/* <h2 className="text-lg text-text">
-                Please enter your email and password to continue
-              </h2> */}
               <h2>{t('subtitle')}</h2>
             </div>
             <Button>
-              {locale === 'en' ? (
-                <>
-                  <GoogleOutlined />
-                  {t('googleBtn')}
-                </>
-              ) : (
-                <>
-                  {t('googleBtn')} <GoogleOutlined />
-                </>
-              )}
+              <GoogleOutlined />
+              {t('googleBtn')}
             </Button>
-            {/* <div className="w-[82%] space-y-1">
-              <h3 className="text-text font-semibold">Email address:</h3>
-              <Input
-                className="w-full"
-                style={{
-                  backgroundColor: 'var(--color-auth-input)',
-                  height: 56,
-                }}
-              ></Input>{' '}
-            </div>
-            <div className="w-[82%] space-y-1">
-              <div className="flex justify-between">
-                <h3 className="text-text font-semibold">Password:</h3>
-                <Link href="" className="text-text font-semibold">
-                  Forget Password?
-                </Link>
-              </div>
-              <Input
-                className="w-full"
-                style={{
-                  backgroundColor: 'var(--color-auth-input)',
-                  height: 56,
-                }}
-              ></Input>{' '}
-              <Checkbox className="text-text font-semibold">Remember Password</Checkbox>
-            </div>
-            <Button
-              className="w-[66%] font-bold"
-              style={{
-                backgroundColor: 'var(--color-primary)',
-                color: 'white',
-                fontWeight: 700,
-                fontSize: 16,
-                height: 56,
-                marginTop: 16,
-              }}
-            >
-              Sign In
-            </Button>
-            <p className="font-semibold">
-              Don’t have an account?{' '}
-              <Link href="" className="text-primary underline">
-                Create Account
-              </Link>
-            </p> */}
             <LanguageSwitcher />
           </div>
         </div>

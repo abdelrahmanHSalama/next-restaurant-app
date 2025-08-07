@@ -6,6 +6,7 @@ export const SideBarContext = createContext({
   setCollapsed: (collapsed: boolean) => {},
 });
 export const SideBarProvider = ({ children }: { children: ReactNode }) => {
+  // TODO: save state to local storage
   const [collapsed, setCollapsed] = useState<boolean>(false);
   return (
     <SideBarContext.Provider value={{ collapsed, setCollapsed }}>

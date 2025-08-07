@@ -49,7 +49,7 @@ function getItem(label: React.ReactNode, key: string, icon: React.ReactNode): Me
 }
 
 const mainMenuItems: MenuItem[] = [
-  getItem('Dashboard', '/', <GaugeIcon className="size-6" />),
+  getItem('Dashboard', '/dashboard', <GaugeIcon className="size-6" />),
   getItem('Products', '/products', <SquaresFourIcon className="size-6" />),
   getItem('Favorites', '/favorites', <HeartStraightIcon className="size-6" />),
   getItem('Inbox', '/inbox', <ChatsIcon className="size-6" />),
