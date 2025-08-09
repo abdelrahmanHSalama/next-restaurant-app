@@ -22,6 +22,9 @@
   color: white !important;
   overflow: visible !important;
 }
+html[lang='ar'] .ant-menu-item-selected::before {
+  right: -33px;
+}
 .ant-menu-item-selected::before {
   content: '';
   position: absolute;
@@ -32,9 +35,15 @@
   background-color: var(--c-primary) !important;
   border-radius: 4px;
 }
+html[lang='ar'] .ant-layout-sider-collapsed .ant-menu-item-selected::before {
+  right: -10px;
+}
 .ant-layout-sider-collapsed .ant-menu-item-selected::before {
   left: -10px;
   width: 4px;
+}
+html[lang='ar'] .ant-menu-title-content {
+  margin: 0 16px 0 0 !important;
 }
 .ant-menu-title-content {
   margin: 0 0 0 16px !important;

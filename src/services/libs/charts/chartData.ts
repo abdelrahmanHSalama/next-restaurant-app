@@ -1,6 +1,6 @@
 import { DataType } from './AreaChart';
 
-const chartData: Record<string, DataType[]> = {
+export const chartData: Record<string, DataType[]> = {
   July: [
     { name: '5k', value: 20 },
     { name: '10k', value: 45 },
@@ -90,4 +90,3 @@ export const stackedChartData: Record<string, DataType[]> = {
   ],
 };
 
-export default chartData;

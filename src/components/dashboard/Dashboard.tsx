@@ -7,6 +7,7 @@ import {
 } from '@phosphor-icons/react';
 import { PageTitle } from '../ui';
 import KPICard from './KPICard';
+import { AreaChart, chartData, StackedAreaChart, stackedChartData } from '@/services/libs/charts';
 export type KPIDataType = {
   title: string;
   total: number;
@@ -59,10 +60,16 @@ const Dashboard = () => {
   return (
     <>
       <PageTitle title="dashboard" />
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {KPIData.map((item) => (
-          <KPICard key={item.title} item={item} />
-        ))}
+      <section>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {KPIData.map((item) => (
+            <KPICard key={item.title} item={item} />
+          ))}
+        </div>
+        <div className="flex flex-col gap-2 my-4">
+          <AreaChart chartData={chartData} />
+          <StackedAreaChart chartData={stackedChartData} />
+        </div>
       </section>
     </>
   );
