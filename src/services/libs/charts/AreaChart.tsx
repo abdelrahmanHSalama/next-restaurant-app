@@ -11,6 +11,7 @@ import {
 import { Select } from 'antd';
 import { useState } from 'react';
 import { useChartColors } from './colors';
+import { useTranslations } from 'next-intl';
 
 const { Option } = Select;
 
@@ -55,23 +56,25 @@ const AreaChartComponent = ({
     return null;
   }
 
+  const t = useTranslations('Dashboard');
+
   return (
     <div className=" px-6 py-7 rounded-lg shadow bg-card w-full">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">Sales Details</h2>
+        <h2 className="text-2xl font-bold">{t('salesDetails')}</h2>
         <Select
           defaultValue={selectedMonth}
           onChange={handleMonthChange}
           className="w-26.5 opacity-75"
         >
           <Option className=" opacity-75" value="July">
-            July
+            {t('July')}
           </Option>
           <Option className=" opacity-75" value="August">
-            August
+            {t('August')}
           </Option>
           <Option className=" opacity-75" value="September">
-            September
+            {t('September')}
           </Option>
         </Select>
       </div>

@@ -35,7 +35,7 @@ export const Header = () => {
           </span>
         </div>
         <div className="flex items-center gap-2 md:gap-4">
-          <Image width={40} height={27} src="/UK Flag.png" alt="UK Flag" />
+          {/* <Image width={40} height={27} src="/UK Flag.png" alt="UK Flag" /> */}
           <LanguageSwitcher />
         </div>
         <div className="flex items-center gap-2 md:gap-5">

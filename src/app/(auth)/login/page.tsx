@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { useTranslations } from 'next-intl';
 
 const Login = () => {
-  const t = useTranslations('HomePage');
+  const t = useTranslations('AuthPage');
 
   return (
     <main className="flex items-center justify-center h-screen bg-primary">

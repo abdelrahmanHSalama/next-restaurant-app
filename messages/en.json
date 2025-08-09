@@ -1,7 +1,41 @@
 {
-  "HomePage": {
+  "AuthPage": {
     "title": "Login to Account",
     "subtitle": "Login with Google to continue",
     "googleBtn": "Login with Google"
+  },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "favorites": "Favorites",
+    "inbox": "Inbox",
+    "orderList": "Order List",
+    "productStock": "Product Stock",
+    "pages": "Pages",
+    "pricing": "Pricing",
+    "calendar": "Calendar",
+    "todo": "To-Do",
+    "contacts": "Contacts",
+    "invoices": "Invoices",
+    "uiElements": "UI Elements",
+    "team": "Team",
+    "table": "Table",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "totalUsers": "Total Users",
+    "upFromYesterday": "Up from yesterday",
+    "totalOrders": "Total Orders",
+    "upFromPastWeek": "Up from past week",
+    "totalSales": "Total Sales",
+    "downFromYesterday": "Down from yesterday",
+    "totalPending": "Total Pending",
+    "salesDetails": "Sales Details",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "monthlySalesComparison": "Monthly Sales Comparison"
   }
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import {
   AreaChart,
@@ -33,10 +34,11 @@ const StackedAreaChart = ({ chartData }: { chartData: Record<string, DataType[]>
   const stackedData = transformDataForStacking(chartData);
   const months = Object.keys(chartData);
   const colors = ['#8884d8', '#82ca9d', '#ffc658'];
+  const t = useTranslations('Dashboard');
 
   return (
     <div className="px-6 py-7 rounded-lg shadow bg-card w-full">
-      <h2 className="text-2xl font-bold mb-4">Monthly Sales Comparison</h2>
+      <h2 className="text-2xl font-bold mb-4">{t('monthlySalesComparison')}</h2>
       <ResponsiveContainer width="100%" height={400}>
         <AreaChart
           data={stackedData}
