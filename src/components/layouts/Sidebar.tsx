@@ -25,6 +25,7 @@ import {
 } from '@phosphor-icons/react';
 
 import { useSideBarProvider } from '@/services/context';
+import { useTranslations } from 'next-intl';
 
 const siderStyle: React.CSSProperties = {
   overflowY: 'auto',
@@ -48,31 +49,6 @@ function getItem(label: React.ReactNode, key: string, icon: React.ReactNode): Me
   };
 }
 
-const mainMenuItems: MenuItem[] = [
-  getItem('Dashboard', '/dashboard', <GaugeIcon className="size-6" />),
-  getItem('Products', '/products', <SquaresFourIcon className="size-6" />),
-  getItem('Favorites', '/favorites', <HeartStraightIcon className="size-6" />),
-  getItem('Inbox', '/inbox', <ChatsIcon className="size-6" />),
-  getItem('Order List', '/order-list', <ListChecksIcon className="size-6" />),
-  getItem('Product Stock', '/product-stock', <DatabaseIcon className="size-6" />),
-];
-
-const pagesMenuItems: MenuItem[] = [
-  getItem('Pricing', '/pricing', <GiftIcon className="size-6" />),
-  getItem('Calendar', '/calendar', <CalendarDotsIcon className="size-6" />),
-  getItem('To-Do', '/todo', <ClipboardIcon className="size-6" />),
-  getItem('Contact', '/contact', <UsersIcon className="size-6" />),
-  getItem('Invoice', '/invoice', <MoneyIcon className="size-6" />),
-  getItem('UI Elements', '/ui-elements', <ChartBarIcon className="size-6" />),
-  getItem('Team', '/team', <UserIcon className="size-6" />),
-  getItem('Table', '/table', <GridNineIcon className="size-6" />),
-];
-
-const settingsMenuItems: MenuItem[] = [
-  getItem('Settings', '/settings', <GearSixIcon className="size-6" />),
-  getItem('Logout', '/logout', <PowerIcon className="size-6" />),
-];
-
 const renderMenuSection = (
   items: MenuItem[],
   selectedKey: string,
@@ -93,6 +69,32 @@ export const Sidebar = () => {
   const { collapsed, setCollapsed } = useSideBarProvider();
   const pathname = usePathname();
   const router = useRouter();
+  const t = useTranslations('Sidebar');
+
+  const mainMenuItems: MenuItem[] = [
+    getItem(t('dashboard'), '/dashboard', <GaugeIcon className="size-6" />),
+    getItem(t('products'), '/products', <SquaresFourIcon className="size-6" />),
+    getItem(t('favorites'), '/favorites', <HeartStraightIcon className="size-6" />),
+    getItem(t('inbox'), '/inbox', <ChatsIcon className="size-6" />),
+    getItem(t('orderList'), '/order-list', <ListChecksIcon className="size-6" />),
+    getItem(t('productStock'), '/product-stock', <DatabaseIcon className="size-6" />),
+  ];
+
+  const pagesMenuItems: MenuItem[] = [
+    getItem(t('pricing'), '/pricing', <GiftIcon className="size-6" />),
+    getItem(t('calendar'), '/calendar', <CalendarDotsIcon className="size-6" />),
+    getItem(t('todo'), '/todo', <ClipboardIcon className="size-6" />),
+    getItem(t('contacts'), '/contact', <UsersIcon className="size-6" />),
+    getItem(t('invoices'), '/invoice', <MoneyIcon className="size-6" />),
+    getItem(t('uiElements'), '/ui-elements', <ChartBarIcon className="size-6" />),
+    getItem(t('team'), '/team', <UserIcon className="size-6" />),
+    getItem(t('table'), '/table', <GridNineIcon className="size-6" />),
+  ];
+
+  const settingsMenuItems: MenuItem[] = [
+    getItem(t('settings'), '/settings', <GearSixIcon className="size-6" />),
+    getItem(t('logout'), '/logout', <PowerIcon className="size-6" />),
+  ];
 
   const handleSelect = (key: string) => {
     if (key !== pathname) {
@@ -101,7 +103,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <Sider collapsed={collapsed} width={240} style={siderStyle} className='shadow-xs'>
+    <Sider collapsed={collapsed} width={240} style={siderStyle} className="shadow-xs">
       <h1
         className={`text-center py-4 my-2 font-extrabold text-xl text-primary ${
           collapsed ? 'hidden' : ''
@@ -120,7 +122,7 @@ export const Sidebar = () => {
       {renderMenuSection(mainMenuItems, pathname, handleSelect, collapsed)}
       <Divider style={{ margin: '16px 0' }} />
 
-      {!collapsed && <p className="text-text/75 mx-6 my-4 px-[30px]">Pages</p>}
+      {!collapsed && <p className="text-text/75 mx-6 my-4 px-[30px]">{t('pages')}</p>}
 
       {renderMenuSection(pagesMenuItems, pathname, handleSelect, collapsed)}
       <Divider style={{ margin: '16px 0' }} />

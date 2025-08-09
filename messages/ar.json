@@ -1,7 +1,41 @@
 {
-  "HomePage": {
+  "AuthPage": {
     "title": "قم بتسجيل الدخول",
     "subtitle": "قم بتسجيل الدخول باستخدام جوجل للاستكمال",
     "googleBtn": "سجل الدخول باستخدام جوجل"
+  },
+  "Sidebar": {
+    "dashboard": "لوحة التحكم",
+    "products": "المنتجات",
+    "favorites": "المفضلة",
+    "inbox": "صندوق الوارد",
+    "orderList": "قائمة الطلبات",
+    "productStock": "مخزون المنتجات",
+    "pages": "الصفحات",
+    "pricing": "التسعير",
+    "calendar": "التقويم",
+    "todo": "قائمة المهام",
+    "contacts": "جهات الاتصال",
+    "invoices": "الفواتير",
+    "uiElements": "عناصر الواجهة",
+    "team": "الفريق",
+    "table": "الجدول",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج"
+  },
+  "Dashboard": {
+    "title": "لوحة التحكم",
+    "totalUsers": "إجمالي المستخدمين",
+    "upFromYesterday": "ارتفاع عن الأمس",
+    "totalOrders": "إجمالي الطلبات",
+    "upFromPastWeek": "ارتفاع عن الأسبوع الماضي",
+    "totalSales": "إجمالي المبيعات",
+    "downFromYesterday": "انخفاض عن الأمس",
+    "totalPending": "إجمالي المعلق",
+    "salesDetails": "تفاصيل المبيعات",
+    "July": "يوليو",
+    "August": "أغسطس",
+    "September": "سبتمبر",
+    "monthlySalesComparison": "مقارنة المبيعات الشهرية"
   }
 }
