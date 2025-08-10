@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 
 export const metadata: Metadata = {
   title: 'DashStack',
@@ -10,5 +12,26 @@ export default function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <main className="flex items-center justify-center h-screen overflow-hidden bg-primary relative">
+      <Image
+        src="/Oval.svg"
+        width={900}
+        height={900}
+        className="absolute -top-40 -left-40 rotate-90"
+        alt="oval"
+      />
+      <Image
+        src="/Oval.svg"
+        width={900}
+        height={900}
+        className="absolute -bottom-40 -right-40 -rotate-90"
+        alt="oval"
+      />
+      {children}
+      <div className="absolute top-5 right-5 z-10">
+        <LanguageSwitcher />
+      </div>
+    </main>
+  );
 }
