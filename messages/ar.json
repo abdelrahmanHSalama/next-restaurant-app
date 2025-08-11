@@ -45,6 +45,13 @@
     "July": "يوليو",
     "August": "أغسطس",
     "September": "سبتمبر",
-    "monthlySalesComparison": "مقارنة المبيعات الشهرية"
+    "revenue": "الأرباح",
+    "productName": "اسم المنتج",
+    "sku": "الرمز التعريفي",
+    "location": "الموقع",
+    "price": "السعر",
+    "amount": "الكمية",
+    "status": "الحالة",
+    "dealsDetails": "تفاصيل الصفقات"
   }
 }

@@ -10,7 +10,7 @@
     "title": "Sign Up for an Account",
     "subtitle": "Sign up with Google to continue",
     "googleBtn": "Sign up with Google",
-    "haveAcc" : "Already have an account?",
+    "haveAcc": "Already have an account?",
     "login": "Login"
   },
   "Sidebar": {
@@ -45,6 +45,13 @@
     "July": "July",
     "August": "August",
     "September": "September",
-    "monthlySalesComparison": "Monthly Sales Comparison"
+    "revenue": "Revenue",
+    "productName": "Product Name",
+    "sku": "SKU",
+    "location": "Location",
+    "price": "Price",
+    "amount": "Amount",
+    "status": "Status",
+    "dealsDetails": "Deals Details"
   }
 }

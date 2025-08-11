@@ -15,7 +15,7 @@ import { useTranslations } from 'next-intl';
 
 const { Option } = Select;
 
-export type DataType = {
+export type MonthlyChartData = {
   name: string;
   value: number;
 };
@@ -39,7 +39,7 @@ const AreaChartComponent = ({
   chartData,
   colorIndex = 0,
 }: {
-  chartData: Record<string, DataType[]>;
+  chartData: Record<string, MonthlyChartData[]>;
   colorIndex?: number;
 }) => {
   const [selectedMonth, setSelectedMonth] = useState('August');
