@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import {
   ChartLineUpIcon,
   ClockCounterClockwiseIcon,
@@ -8,6 +8,7 @@ import {
 import { PageTitle } from '../ui';
 import KPICard from './KPICard';
 import { AreaChart, chartData, StackedAreaChart, stackedChartData } from '@/services/libs/charts';
+import DealsDetails from './DealsDetails';
 export type KPIDataType = {
   title: string;
   total: number;
@@ -21,7 +22,7 @@ const KPIData: KPIDataType[] = [
   {
     title: 'users',
     total: 40689,
-    rate:"8.5%",
+    rate: '8.5%',
     description: 'upFromYesterday',
     dir: 'up',
     tag: 'info',
@@ -30,7 +31,7 @@ const KPIData: KPIDataType[] = [
   {
     title: 'orders',
     total: 10293,
-    rate:'1.3%',
+    rate: '1.3%',
     description: 'upFromPastWeek',
     dir: 'up',
     tag: 'warning',
@@ -39,7 +40,7 @@ const KPIData: KPIDataType[] = [
   {
     title: 'sales',
     total: 89000,
-    rate:"4.3%",
+    rate: '4.3%',
     description: 'downFromYesterday',
     dir: 'down',
     tag: 'success',
@@ -48,7 +49,7 @@ const KPIData: KPIDataType[] = [
   {
     title: 'pending',
     total: 2040,
-    rate:"1.8%",
+    rate: '1.8%',
     description: 'upFromYesterday',
     dir: 'up',
     tag: 'danger',
@@ -66,10 +67,11 @@ const Dashboard = () => {
             <KPICard key={item.title} item={item} />
           ))}
         </div>
-        <div className="flex flex-col gap-2 my-4">
+        <div className="space-y-4 my-4">
           <AreaChart chartData={chartData} />
           <StackedAreaChart chartData={stackedChartData} />
         </div>
+        <DealsDetails />
       </section>
     </>
   );
