@@ -48,3 +48,7 @@ html[lang='ar'] .ant-menu-title-content {
 .ant-menu-title-content {
   margin: 0 0 0 16px !important;
 }
+.slick-prev::after,
+.slick-next::after {
+  display: none !important;
+}
