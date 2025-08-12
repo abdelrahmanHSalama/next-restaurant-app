@@ -15,18 +15,11 @@ export default function AuthLayout({
   return (
     <main className="flex items-center justify-center h-screen overflow-hidden bg-primary relative">
       <Image
-        src="/Oval.svg"
+        src="/Shape.png"
         width={900}
         height={900}
-        className="absolute -top-40 -left-40 rotate-90"
-        alt="oval"
-      />
-      <Image
-        src="/Oval.svg"
-        width={900}
-        height={900}
-        className="absolute -bottom-40 -right-40 -rotate-90"
-        alt="oval"
+        className="absolute top-0 left-0 w-full h-full"
+        alt="Shape"
       />
       {children}
       <div className="absolute top-5 right-5 z-10">
