@@ -16,6 +16,7 @@
   "Sidebar": {
     "dashboard": "Dashboard",
     "products": "Products",
+    "files": "Files",
     "favorites": "Favorites",
     "inbox": "Inbox",
     "orderList": "Order List",

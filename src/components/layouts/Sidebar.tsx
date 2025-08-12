@@ -22,6 +22,7 @@ import {
   GearSixIcon,
   PowerIcon,
   ListIcon,
+  Files,
 } from '@phosphor-icons/react';
 
 import { useSideBarProvider } from '@/services/context';
@@ -74,6 +75,7 @@ export const Sidebar = () => {
   const mainMenuItems: MenuItem[] = [
     getItem(t('dashboard'), '/dashboard', <GaugeIcon className="size-6" />),
     getItem(t('products'), '/products', <SquaresFourIcon className="size-6" />),
+    getItem(t('files'), '/files', <Files className="size-6" />),
     getItem(t('favorites'), '/favorites', <HeartStraightIcon className="size-6" />),
     getItem(t('inbox'), '/inbox', <ChatsIcon className="size-6" />),
     getItem(t('orderList'), '/order-list', <ListChecksIcon className="size-6" />),

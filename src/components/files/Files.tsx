@@ -123,7 +123,9 @@ const FilesPage = () => {
         <PageTitle set="Files" />
         <Button>+ Add File</Button>
       </div>
-      <Table<DataType> columns={columns} dataSource={data} />
+      <div className="overflow-x-auto max-w-full">
+        <Table<DataType> columns={columns} dataSource={data} />
+      </div>
       <Modal
         title="QR Code"
         closable={{ 'aria-label': 'Custom Close Button' }}
