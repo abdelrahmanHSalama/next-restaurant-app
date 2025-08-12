@@ -32,7 +32,7 @@
     "settings": "Settings",
     "logout": "Logout"
   },
-  "Dashboard": {
+  "dashboard": {
     "title": "Dashboard",
     "totalUsers": "Total Users",
     "upFromYesterday": "Up from yesterday",
@@ -53,5 +53,6 @@
     "amount": "Amount",
     "status": "Status",
     "dealsDetails": "Deals Details"
-  }
+  },
+  "files": { "title": "Files" }
 }

@@ -32,7 +32,7 @@
     "settings": "الإعدادات",
     "logout": "تسجيل الخروج"
   },
-  "Dashboard": {
+  "dashboard": {
     "title": "لوحة التحكم",
     "totalUsers": "إجمالي المستخدمين",
     "upFromYesterday": "ارتفاع عن الأمس",
@@ -53,5 +53,6 @@
     "amount": "الكمية",
     "status": "الحالة",
     "dealsDetails": "تفاصيل الصفقات"
-  }
+  },
+  "files": { "title": "الملفات" }
 }
