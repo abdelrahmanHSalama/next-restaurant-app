@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 
-const PageTitle = ({ title }: { title: string }) => {
-  const t = useTranslations('Dashboard');
+const PageTitle = ({ set }: { set: string }) => {
+  const t = useTranslations(set);
   return <h1 className="text-3xl font-bold mb-7 capitalize">{t('title')}</h1>;
 };
 

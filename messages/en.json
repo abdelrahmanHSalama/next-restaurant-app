@@ -54,7 +54,9 @@
     "status": "Status",
     "dealsDetails": "Deals Details"
   },
+  "Files": { "title": "Files" },
   "Products": {
+    "title": "Products",
     "headerDate": "September 12-22",
     "headerTitle1": "Enjoy free home",
     "headerTitle2": "delivery in this summer",

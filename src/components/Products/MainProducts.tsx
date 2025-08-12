@@ -7,12 +7,12 @@ const productsArr = products.data;
 const MainProducts = () => {
   return (
     <section>
-      <PageTitle title="products" />
+      <PageTitle set="Products" />
       <MainCarousel />
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-7.5'>
-      {productsArr.slice(0,3).map((p) => (
-        <ProductCard key={p.id} product={p} />
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-7.5">
+        {productsArr.slice(0, 3).map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))}
       </div>
     </section>
   );

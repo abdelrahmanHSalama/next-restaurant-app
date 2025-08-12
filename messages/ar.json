@@ -54,7 +54,9 @@
     "status": "الحالة",
     "dealsDetails": "تفاصيل الصفقات"
   },
+  "Files": { "title": "الملفات" },
   "Products": {
+    "title": "المنتجات",
     "headerDate": "سبتمبر 12-22",
     "headerTitle1": "استمتع بتوصيل",
     "headerTitle2": "مجاني للمنزل في هذا الصيف",
