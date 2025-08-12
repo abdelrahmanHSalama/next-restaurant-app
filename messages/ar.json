@@ -53,5 +53,13 @@
     "amount": "الكمية",
     "status": "الحالة",
     "dealsDetails": "تفاصيل الصفقات"
+  },
+  "Products": {
+    "headerDate": "سبتمبر 12-22",
+    "headerTitle1": "استمتع بتوصيل",
+    "headerTitle2": "مجاني للمنزل في هذا الصيف",
+    "headerSubtitle": ".ملابس مصممة - اختر من بين ملابس مصممة عصرية",
+    "getStarted": "البدء",
+    "editProduct": "تعديل المنتج"
   }
 }
