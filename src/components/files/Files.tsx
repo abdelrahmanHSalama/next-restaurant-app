@@ -5,69 +5,24 @@ import { PageTitle } from '@/components/ui';
 import { Space, Table, Tag, Button, Modal } from 'antd';
 import type { TableProps } from 'antd';
 import Image from 'next/image';
+import { File, filesArray } from '@/services/data';
+import { useRouter } from 'next/navigation';
 
-interface DataType {
-  key: string;
-  name: string;
-  description: string;
-  date: string;
-  tags: string[];
-}
-
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'Menu_Summer2023.pdf',
-    description: 'Seasonal summer menu with new dishes',
-    date: '2023-06-15',
-    tags: ['menu', 'current'],
-  },
-  {
-    key: '2',
-    name: 'Health_Inspection_Report.pdf',
-    description: 'Latest health inspection results',
-    date: '2023-07-10',
-    tags: ['compliance', 'important'],
-  },
-  {
-    key: '3',
-    name: 'Vendor_Contracts.xlsx',
-    description: 'Active vendor agreements and contracts',
-    date: '2023-05-22',
-    tags: ['contracts', 'finance'],
-  },
-  {
-    key: '4',
-    name: 'Employee_Handbook.pdf',
-    description: 'Updated staff policies and procedures',
-    date: '2023-04-05',
-    tags: ['hr', 'policies'],
-  },
-  {
-    key: '5',
-    name: 'Salads.pdf',
-    description: 'Current salad selection and pairings',
-    date: '2023-08-01',
-    tags: ['menu'],
-  },
-];
+const data = filesArray;
 
 const FilesPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   const showModal = () => {
     setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const columns: TableProps<DataType>['columns'] = [
+  const columns: TableProps<File>['columns'] = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -107,11 +62,11 @@ const FilesPage = () => {
     {
       title: 'Action',
       key: 'action',
-      render: (_) => (
+      render: (_, record) => (
         <Space size="middle">
           <a onClick={showModal}>QR Code</a>
           <a>Copy Link</a>
-          <a>Edit</a>
+          <a onClick={() => router.push(`./files/edit?id=${record.id}`)}>Edit</a>
         </Space>
       ),
     },
@@ -121,10 +76,10 @@ const FilesPage = () => {
     <div>
       <div className="flex justify-between items-center">
         <PageTitle set="Files" />
-        <Button>+ Add File</Button>
+        <Button onClick={() => router.push('./files/add')}>+ Add File</Button>
       </div>
       <div className="overflow-x-auto max-w-full">
-        <Table<DataType> columns={columns} dataSource={data} />
+        <Table<File> columns={columns} dataSource={data} />
       </div>
       <Modal
         title="QR Code"
