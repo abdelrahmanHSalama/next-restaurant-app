@@ -1,3 +1,4 @@
+'use client';
 import { Menu, MenuProps } from 'antd';
 
 export type MenuItem = Required<MenuProps>['items'][number];
@@ -7,8 +8,15 @@ interface RenderMenuSectionProps {
   selectedKey: string;
   onSelect: (key: string) => void;
   collapsed: boolean;
+  drawerOpened: boolean;
 }
-const RenderMenuSection = ({ items, selectedKey, onSelect, collapsed }: RenderMenuSectionProps) => {
+const RenderMenuSection = ({
+  items,
+  selectedKey,
+  onSelect,
+  collapsed,
+  drawerOpened,
+}: RenderMenuSectionProps) => {
   return (
     <Menu
       mode="inline"
@@ -16,7 +24,7 @@ const RenderMenuSection = ({ items, selectedKey, onSelect, collapsed }: RenderMe
       selectedKeys={[selectedKey]}
       onSelect={({ key }) => onSelect(key)}
       style={{ border: 'none' }}
-      className={`*:!h-[50px] *:!leading-[50px] *:!my-0 *:!px-4 ${collapsed ? '!px-1' : '!px-6'}`}
+      className={`*:!h-[50px] *:!leading-[50px] *:!my-0 *:!px-4 ${collapsed || drawerOpened ? '!px-1' : '!px-6'}`}
     />
   );
 };

@@ -1,11 +1,11 @@
 'use client';
 
 import { filesArray } from '@/services/data';
-import { CursorClickIcon } from '@phosphor-icons/react';
+import { TrashSimpleIcon } from '@phosphor-icons/react';
 import { Button, Input, Select, Tag } from 'antd';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const { TextArea } = Input;
 
@@ -13,18 +13,16 @@ const EditFilePage = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
 
+  const file = filesArray.find((file) => file.id === id);
+  const [inputValue, setInputValue] = useState('');
+  const [localTags, setLocalTags] = useState<string[]>(file?.tags || []);
   if (!id) {
     return <div className="flex items-center justify-center h-full">⚠ No File Specified</div>;
   }
 
-  const file = filesArray.find((file) => file.id === id);
-
   if (!file) {
     return <div className="flex items-center justify-center h-full">⚠ File Not Found</div>;
   }
-
-  const [inputValue, setInputValue] = React.useState('');
-  const [localTags, setLocalTags] = React.useState<string[]>(file?.tags || []);
 
   const handleNewTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && inputValue.trim()) {
@@ -39,24 +37,18 @@ const EditFilePage = () => {
     { value: 'finance', label: '🔵 Finance' },
   ];
 
-  const [clicks, setClicks] = useState(16);
-
-  const handleClicks = () => {
-    setClicks((prev) => prev + 1);
-  };
-
   return (
     <div className="space-y-2">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap gap-2">
         <h2 className="font-semibold text-xl">{file?.name}</h2>
         <div className="flex gap-1 items-center">
           <Button onClick={() => console.log('Clicked!')}>Copy Link</Button>
-          <Button onClick={handleClicks}>
-            <CursorClickIcon size={16} /> {clicks} clicks
+          <Button>
+            <TrashSimpleIcon className="text-danger" size={16} /> Delete
           </Button>
         </div>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-col md:flex-row">
         <div className="flex-2/3 space-y-4">
           <div className="space-y-1">
             <h3 className="ms-0.5 font-semibold">Destination URL</h3>

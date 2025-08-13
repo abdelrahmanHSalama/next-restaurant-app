@@ -9,7 +9,10 @@ const productsArray = products.data;
 const DealsDetails = () => {
   const t = useTranslations('Dashboard');
   return (
-    <div className=" px-6 py-7 rounded-lg shadow bg-card w-full space-y-2">
+    <div
+      className="px-6 py-7 rounded-lg shadow-xs bg-card w-full overflow-x-auto space-y-2"
+      style={{ scrollbarWidth: 'thin', scrollbarGutter: 'stable' }}
+    >
       <h2 className="text-2xl font-bold">{t('dealsDetails')}</h2>
       <table className="w-full">
         <thead className="bg-background w-full">

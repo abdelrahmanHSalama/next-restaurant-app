@@ -22,12 +22,12 @@ import {
   GearSixIcon,
   PowerIcon,
   ListIcon,
-  Files,
+  FilesIcon,
 } from '@phosphor-icons/react';
 
 import { useSideBarProvider } from '@/services/context';
 import { useTranslations } from 'next-intl';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import RenderMenuSection, { MenuItem } from './RenderMenuSection';
 
 const siderStyle: React.CSSProperties = {
@@ -53,7 +53,7 @@ function getItem(label: React.ReactNode, key: string, icon: React.ReactNode): Me
 const { useBreakpoint } = Grid;
 
 export const Sidebar = () => {
-  const { collapsed, setCollapsed, toggleCollapsed, toggleDrawer, drawerOpened, setDrawerOpened } =
+  const { collapsed, toggleCollapsed, toggleDrawer, drawerOpened, setDrawerOpened } =
     useSideBarProvider();
   const pathname = usePathname();
   const router = useRouter();
@@ -64,6 +64,7 @@ export const Sidebar = () => {
     () => [
       getItem(t('dashboard'), '/dashboard', <GaugeIcon className="size-6" />),
       getItem(t('products'), '/products', <SquaresFourIcon className="size-6" />),
+      getItem(t('files'), '/files', <FilesIcon className="size-6" />),
       getItem(t('favorites'), '/favorites', <HeartStraightIcon className="size-6" />),
       getItem(t('inbox'), '/inbox', <ChatsIcon className="size-6" />),
       getItem(t('orderList'), '/order-list', <ListChecksIcon className="size-6" />),
@@ -96,8 +97,8 @@ export const Sidebar = () => {
 
   const handleSelect = (key: string) => {
     if (key !== pathname) {
-      router.push(key);
       setDrawerOpened(false);
+      router.push(key);
     }
   };
 
@@ -111,6 +112,7 @@ export const Sidebar = () => {
         selectedKey={pathname}
         onSelect={handleSelect}
         collapsed={collapsed}
+        drawerOpened={drawerOpened}
       />
     </>
   );
@@ -125,46 +127,25 @@ export const Sidebar = () => {
     </>
   );
 
-  const handleResize = () => {
-    if (window.innerWidth <= 768) {
-      setCollapsed(true);
-    } else {
-      setCollapsed(false);
-    }
-  };
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <>
-      <Sider
-        collapsed={collapsed}
-        onCollapse={() => handleResize()}
-        width={240}
-        style={siderStyle}
-        className="shadow-xs"
-      >
-        {!collapsed && (
-          <h1 className="text-center py-4 my-2 font-extrabold text-xl text-primary ">
-            Dash<span className="text-text">Stack</span>
-          </h1>
-        )}
-
-        {collapsed && (
-          <div className="py-4 my-2">
-            <ListIcon
-              className="size-6 mx-auto cursor-pointer"
-              onClick={!screens.md ? toggleDrawer : toggleCollapsed}
-            />
-          </div>
-        )}
-        {sideBarContent}
-      </Sider>
+      {screens.md && (
+        <Sider collapsed={collapsed} width={240} style={siderStyle} className="shadow-xs">
+          {!collapsed ? (
+            <h1 className="text-center py-4 my-2 font-extrabold text-xl text-primary ">
+              Dash<span className="text-text">Stack</span>
+            </h1>
+          ) : (
+            <div className="py-4 my-2">
+              <ListIcon
+                className="size-6 mx-auto cursor-pointer"
+                onClick={!screens.md ? toggleDrawer : toggleCollapsed}
+              />
+            </div>
+          )}
+          {sideBarContent}
+        </Sider>
+      )}
       {!screens.md && (
         <Drawer
           title={
@@ -178,7 +159,7 @@ export const Sidebar = () => {
           styles={{
             body: { scrollbarWidth: 'thin', scrollbarGutter: 'stable', paddingInline: '20px' },
           }}
-          placement="left"
+          placement='left'
           width={500}
           onClose={() => setDrawerOpened(false)}
           open={drawerOpened}

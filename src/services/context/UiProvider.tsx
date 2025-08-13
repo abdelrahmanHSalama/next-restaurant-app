@@ -5,11 +5,14 @@ import { AntDProvider } from './AntDProvider';
 import { ColorsProvider } from './ColorsProvider';
 import { SideBarProvider } from './SideBarProvider';
 
-export const UiProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const UiProvider: React.FC<{ children: React.ReactNode; locale: string }> = ({
+  children,
+  locale,
+}) => {
   return (
     <DarkLightProvider>
       <ColorsProvider>
-        <AntDProvider>
+        <AntDProvider locale={locale}>
           <SideBarProvider>{children}</SideBarProvider>
         </AntDProvider>
       </ColorsProvider>
