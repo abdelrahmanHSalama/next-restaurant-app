@@ -2,19 +2,24 @@
 
 import { useSideBarProvider } from '@/services/context';
 import { SearchOutlined, UserOutlined } from '@ant-design/icons';
-import { BellIcon, ListIcon } from '@phosphor-icons/react';
-import { Avatar, Input } from 'antd';
-import { LanguageSwitcher } from '../ui';
+import { ListIcon } from '@phosphor-icons/react';
+import { Avatar, Input, Grid } from 'antd';
+import LanguageSwitcher from '../ui/LanguageSwitcher';
+
+const { useBreakpoint } = Grid;
 
 export const Header = () => {
-  const { collapsed, toggleCollapsed } = useSideBarProvider();
-
+  const { toggleCollapsed, toggleDrawer, collapsed } = useSideBarProvider();
+  const screens = useBreakpoint();
   return (
-    <header className="flex items-center justify-between gap-4 md:gap-0 px-4 md:px-8 py-3 shadow-xs bg-card  flex-col-reverse md:flex-row">
+    <header className="flex items-center justify-between gap-4 md:gap-0 px-4 md:px-8 py-3 shadow-xs bg-card">
       <div className="flex items-center gap-2 md:gap-6">
-        {!collapsed && (
+        {(!screens.md || !collapsed) && (
           <div>
-            <ListIcon className="size-6 mx-auto cursor-pointer" onClick={toggleCollapsed} />
+            <ListIcon
+              className="size-6 mx-auto cursor-pointer"
+              onClick={screens.md ? toggleCollapsed : toggleDrawer}
+            />
           </div>
         )}
         <Input
@@ -26,13 +31,7 @@ export const Header = () => {
         />
       </div>
       <div className="flex items-center gap-2 md:gap-6">
-        <div className="relative">
-          <BellIcon size={24} color="var(--c-primary)" weight="fill" />
-          <span className="bg-danger rounded-full px-1 text-xs text-card absolute -top-1 -right-0.5">
-            5
-          </span>
-        </div>
-        <div className="flex items-center gap-2 md:gap-4">
+        <div>
           <LanguageSwitcher />
         </div>
         <div className="flex items-center gap-2 md:gap-5">

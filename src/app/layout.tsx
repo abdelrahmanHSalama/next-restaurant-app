@@ -24,11 +24,9 @@ const RootLayout = async ({
   return (
     <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={Nunito.className}>
       <body>
-        <UiProvider>
-          <NextIntlClientProvider>
-            {children}
-          </NextIntlClientProvider>
-        </UiProvider>
+        <NextIntlClientProvider>
+          <UiProvider locale={locale}>{children}</UiProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
