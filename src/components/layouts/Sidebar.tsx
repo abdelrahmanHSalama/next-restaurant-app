@@ -22,6 +22,7 @@ import {
   GearSixIcon,
   PowerIcon,
   ListIcon,
+  Files,
 } from '@phosphor-icons/react';
 
 import { useSideBarProvider } from '@/services/context';
