@@ -13,7 +13,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex items-center justify-center h-screen overflow-hidden bg-primary relative">
+    <main className="flex items-center justify-center min-h-screen overflow-hidden bg-primary relative">
       <Image
         src="/Shape.png"
         width={900}
@@ -21,7 +21,9 @@ export default function AuthLayout({
         className="absolute top-0 left-0 w-full h-full"
         alt="Shape"
       />
-      {children}
+      <div className="flex flex-col items-center justify-center bg-card w-full mx-6 my-16 md:my-auto md:w-1/2 z-10 py-11 md:py-22 px-7 md:px-15 rounded-3xl shadow-xs">
+        {children}
+      </div>
       <div className="absolute top-5 right-5 z-10">
         <LanguageSwitcher />
       </div>

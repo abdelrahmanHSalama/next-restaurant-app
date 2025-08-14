@@ -29,6 +29,7 @@ import { useSideBarProvider } from '@/services/context';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 import RenderMenuSection, { MenuItem } from './RenderMenuSection';
+import { supabase } from '@/services/libs/auth';
 
 const siderStyle: React.CSSProperties = {
   overflowY: 'auto',
@@ -60,6 +61,11 @@ export const Sidebar = () => {
   const t = useTranslations('Sidebar');
   const screens = useBreakpoint();
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.replace('/login');
+  };
+
   const mainMenuItems: MenuItem[] = useMemo(
     () => [
       getItem(t('dashboard'), '/dashboard', <GaugeIcon className="size-6" />),
@@ -90,13 +96,17 @@ export const Sidebar = () => {
   const settingsMenuItems: MenuItem[] = useMemo(
     () => [
       getItem(t('settings'), '/settings', <GearSixIcon className="size-6" />),
-      getItem(t('logout'), '/logout', <PowerIcon className="size-6" />),
+      getItem(
+        <span onClick={handleLogout}>{t('logout')}</span>,
+        'logout',
+        <PowerIcon className="size-6" onClick={handleLogout} />
+      ),
     ],
     [t]
   );
 
   const handleSelect = (key: string) => {
-    if (key !== pathname) {
+    if (key !== pathname && key !== 'logout') {
       setDrawerOpened(false);
       router.push(key);
     }
@@ -159,7 +169,7 @@ export const Sidebar = () => {
           styles={{
             body: { scrollbarWidth: 'thin', scrollbarGutter: 'stable', paddingInline: '20px' },
           }}
-          placement='left'
+          placement="left"
           width={500}
           onClose={() => setDrawerOpened(false)}
           open={drawerOpened}

@@ -1,5 +1,6 @@
 'use client';
 
+import { StackedChartData } from '@/services/types';
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import {
@@ -12,11 +13,6 @@ import {
   Legend,
 } from 'recharts';
 
-export type StackedChartData = {
-  name: string;
-  sales: number;
-  profit: number;
-};
 
 const StackedAreaChart = ({ chartData }: { chartData: Record<string, StackedChartData[]> }) => {
   const [timeRange, setTimeRange] = useState('Last 6 Months');

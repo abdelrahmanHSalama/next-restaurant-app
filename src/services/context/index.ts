@@ -4,3 +4,4 @@ export * from './ColorsProvider';
 export * from './ReactQueryProvider';
 export * from './UiProvider';
 export * from './SideBarProvider';
+export * from './AuthProvider';
