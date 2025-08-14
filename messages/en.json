@@ -3,13 +3,15 @@
     "title": "Login to Your Account",
     "subtitle": "Login with Google to continue",
     "googleBtn": "Login with Google",
+    "loginBtn": "Login",
     "dontHaveAcc": "Don't have an account?",
     "createAccount": "Create Account"
   },
   "RegisterPage": {
     "title": "Sign Up for an Account",
-    "subtitle": "Sign up with Google to continue",
+    "subtitle": "Create a account to continue",
     "googleBtn": "Sign up with Google",
+    "registerBtn": "Register",
     "haveAcc": "Already have an account?",
     "login": "Login"
   },

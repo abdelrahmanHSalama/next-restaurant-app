@@ -1,5 +1,4 @@
-import { MonthlyChartData } from './AreaChart';
-import { StackedChartData } from './StackedAreaChart';
+import { MonthlyChartData, StackedChartData } from '@/services/types';
 
 export const chartData: Record<string, MonthlyChartData[]> = {
   July: [

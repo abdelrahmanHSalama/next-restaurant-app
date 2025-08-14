@@ -12,13 +12,9 @@ import { Select } from 'antd';
 import { useState } from 'react';
 import { useChartColors } from './colors';
 import { useTranslations } from 'next-intl';
+import { MonthlyChartData } from '@/services/types';
 
 const { Option } = Select;
-
-export type MonthlyChartData = {
-  name: string;
-  value: number;
-};
 
 const CustomTooltip = ({ active, payload, color }: any) => {
   if (active && payload && payload.length) {
@@ -50,13 +46,12 @@ const AreaChartComponent = ({
 
   const { getColorByIndex } = useChartColors();
 
+  const t = useTranslations('Dashboard');
   const color = getColorByIndex(colorIndex);
 
   if (!chartData) {
     return null;
   }
-
-  const t = useTranslations('Dashboard');
 
   return (
     <div className=" px-6 py-7 rounded-lg shadow bg-card w-full">
