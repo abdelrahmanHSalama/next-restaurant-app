@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @theme inline {
-  --breakpoint-md: 768px;
+  --breakpoint-md: 769px;
   --color-primary: var(--c-primary);
   --color-secondary: var(--c-secondary);
   --color-background: var(--c-background);

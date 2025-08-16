@@ -1,5 +1,5 @@
 import './globals.css';
-import { UiProvider } from '@/services/context';
+import { AuthProvider, UiProvider } from '@/services/context';
 import { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { Nunito_Sans } from 'next/font/google';
@@ -24,9 +24,11 @@ const RootLayout = async ({
   return (
     <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={Nunito.className}>
       <body>
-        <NextIntlClientProvider>
-          <UiProvider locale={locale}>{children}</UiProvider>
-        </NextIntlClientProvider>
+        <AuthProvider>
+          <NextIntlClientProvider>
+            <UiProvider locale={locale}>{children}</UiProvider>
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );
