@@ -8,10 +8,12 @@ import Image from 'next/image';
 import { File, filesArray } from '@/services/data';
 import { useRouter } from 'next/navigation';
 import { CopyIcon, PencilSimpleLineIcon, QrCodeIcon } from '@phosphor-icons/react';
+import { useTranslations } from 'next-intl';
 
 const data = filesArray;
 
 const FilesPage = () => {
+  const t = useTranslations('Files');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
@@ -26,23 +28,23 @@ const FilesPage = () => {
   const columns: TableProps<File>['columns'] = useMemo(
     () => [
       {
-        title: 'Name',
+        title: t('Name'),
         dataIndex: 'name',
         key: 'name',
         render: (text) => <a>{text}</a>,
       },
       {
-        title: 'Description',
+        title: t('Description'),
         dataIndex: 'description',
         key: 'description',
       },
       {
-        title: 'Date',
+        title: t('Date'),
         dataIndex: 'date',
         key: 'date',
       },
       {
-        title: 'Tags',
+        title: t('Tags'),
         key: 'tags',
         dataIndex: 'tags',
         render: (_, { tags }) => (
@@ -62,7 +64,7 @@ const FilesPage = () => {
         ),
       },
       {
-        title: 'Action',
+        title: t('Actions'),
         key: 'action',
         render: (_, record) => (
           <Space size="middle">
@@ -86,13 +88,15 @@ const FilesPage = () => {
     <section>
       <div className="flex justify-between items-center">
         <PageTitle set="Files" />
-        <Button onClick={() => router.push('./files/add')}>+ Add File</Button>
+        <Button className="mb-7" onClick={() => router.push('./files/add')}>
+          + {t('AddFile')}
+        </Button>
       </div>
       <div
         className="overflow-x-auto max-w-full bg-card rounded-xl shadow-xs"
         style={{ scrollbarWidth: 'thin', scrollbarGutter: 'stable' }}
       >
-        <Table<File> columns={columns} dataSource={data} rowKey="id" />
+        <Table<File> columns={columns} dataSource={data} rowKey="id" pagination={false} />
       </div>
       <Modal
         title="QR Code"
