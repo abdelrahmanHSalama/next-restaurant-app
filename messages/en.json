@@ -1,11 +1,15 @@
 {
   "LoginPage": {
     "title": "Login to Your Account",
-    "subtitle": "Login with Google to continue",
+    "subtitle": "Login to continue",
     "googleBtn": "Login with Google",
     "loginBtn": "Login",
     "dontHaveAcc": "Don't have an account?",
-    "createAccount": "Create Account"
+    "createAccount": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "rememberPassword": "Remember Password"
   },
   "RegisterPage": {
     "title": "Sign Up for an Account",
