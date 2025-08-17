@@ -4,6 +4,8 @@ import { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { Nunito_Sans } from 'next/font/google';
 import { getLocale } from 'next-intl/server';
+import { MAIN_COLORS } from '@/services/constants';
+import { CSSProperties } from 'react';
 
 const Nunito = Nunito_Sans({
   subsets: ['latin'],
@@ -21,8 +23,18 @@ const RootLayout = async ({
   const locale = await getLocale();
   const isRTL = locale === 'ar';
 
+  const lightColors = MAIN_COLORS.light;
+  const htmlStyle = Object.entries(lightColors)
+    .map(([key, value]) => `--c-${key}:${value}`)
+    .join(';');
+
   return (
-    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={Nunito.className}>
+    <html
+      lang={locale}
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className={Nunito.className}
+      style={{ '--c-primary': MAIN_COLORS.light.primary, ...{ style: htmlStyle } } as CSSProperties}
+    >
       <body>
         <AuthProvider>
           <NextIntlClientProvider>
