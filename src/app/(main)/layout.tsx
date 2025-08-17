@@ -11,7 +11,7 @@ export default async function RootLayout({
 
   return (
     <ProtectedRoute>
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout hasSider style={{ minHeight: '100vh' }}>
         <Sidebar />
         <Layout>
           <Header />
