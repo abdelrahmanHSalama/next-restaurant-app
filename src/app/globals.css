@@ -55,3 +55,9 @@ html[lang='ar'] .ant-menu-title-content {
 .ant-drawer-content-wrapper {
   max-width: 240px !important;
 }
+.ant-table-cell,
+td {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
