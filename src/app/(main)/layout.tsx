@@ -11,7 +11,6 @@ export default async function RootLayout({
 }>) {
   const fetchedCookies = await cookies();
   const token = fetchedCookies.get('access-token')?.value;
-  console.log(token);
   if (!token) {
     redirect('/login');
   }

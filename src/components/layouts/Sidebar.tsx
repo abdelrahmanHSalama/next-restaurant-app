@@ -23,6 +23,7 @@ import {
   PowerIcon,
   ListIcon,
   FilesIcon,
+  LinkIcon,
 } from '@phosphor-icons/react';
 
 import { useSideBarProvider } from '@/services/context';
@@ -30,6 +31,7 @@ import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 import RenderMenuSection, { MenuItem } from './RenderMenuSection';
 import { supabase } from '@/services/libs/auth';
+import Cookies from 'js-cookie';
 
 const siderStyle: React.CSSProperties = {
   overflowY: 'auto',
@@ -63,6 +65,7 @@ export const Sidebar = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    Cookies.remove('access-token', { path: '/' });
     router.replace('/login');
   };
 
@@ -71,6 +74,7 @@ export const Sidebar = () => {
       getItem(t('dashboard'), '/dashboard', <GaugeIcon className="size-6" />),
       getItem(t('products'), '/products', <SquaresFourIcon className="size-6" />),
       getItem(t('files'), '/files', <FilesIcon className="size-6" />),
+      getItem(t('links'), '/links', <LinkIcon className="size-6" />),
       getItem(t('favorites'), '/favorites', <HeartStraightIcon className="size-6" />),
       getItem(t('inbox'), '/inbox', <ChatsIcon className="size-6" />),
       getItem(t('orderList'), '/order-list', <ListChecksIcon className="size-6" />),
