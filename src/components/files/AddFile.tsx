@@ -63,7 +63,7 @@ const AddFilePage = () => {
           },
         ]}
       />
-      <div className="bg-card p-8 rounded-xl shadow-xs text-center w-fit md:min-w-xl mx-auto">
+      <div className="bg-card p-8 rounded-xl shadow-xs text-center w-fit md:min-w-xl mx-auto mt-6">
         <h2 className="font-bold text-2xl capitalize border-b border-border pb-4 mb-6">
           {t('uploadNewFile')}
         </h2>

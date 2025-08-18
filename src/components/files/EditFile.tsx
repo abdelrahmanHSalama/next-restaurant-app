@@ -63,22 +63,22 @@ const EditFilePage = () => {
           ]}
           params={{ id: file.name }}
         />
-        <div className="flex gap-1 items-center">
+        <div className="flex gap-2 items-center">
           <Button onClick={() => console.log('Clicked!')}>{t('copy')}</Button>
-          <Button>
+          <button className="flex items-center justify-between gap-2 bg-card px-3.5 leading-8.5 border border-border rounded-lg cursor-pointer hover:border-danger hover:text-danger translation-all duration-150">
             <TrashSimpleIcon className="text-danger" size={16} /> {t('delete')}
-          </Button>
+          </button>
         </div>
       </div>
-      <div className="flex gap-4 flex-col md:flex-row">
+      <div className="flex gap-4 flex-col md:flex-row mt-6">
         <div className="flex-2/3 space-y-4">
           <div className="space-y-1">
             <h3 className="ms-0.5 font-semibold">{t('url')}</h3>
             <Input value={`https://menus.com/menu/restaurantName/${file?.name}`} />
           </div>
           <div className="space-y-1">
-            <h3 className="ms-0.5">{t('shortLink')}</h3>
-            <Input addonBefore="http://men.us/" defaultValue="abc123" />
+            <h3 className="ms-0.5">{t('Description')}</h3>
+            <Input defaultValue={file.description} />
           </div>
           <div className="space-y-1">
             <h3 className="ms-0.5 font-semibold">{t('Tags')}</h3>
