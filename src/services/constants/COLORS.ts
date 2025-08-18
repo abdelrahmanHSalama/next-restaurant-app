@@ -1,4 +1,3 @@
-
 export const MAIN_COLORS = {
   light: {
     primary: '#4880FF',
@@ -20,6 +19,7 @@ export const MAIN_COLORS = {
     border: '#979797',
     input: '#323D4E',
     card: '#273142',
+    'auth-input': '#323D4E',
     danger: '#EF3826',
     success: '#00B69B',
     warning: '#FFA756',

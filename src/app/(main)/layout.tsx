@@ -11,13 +11,12 @@ export default async function RootLayout({
 }>) {
   const fetchedCookies = await cookies();
   const token = fetchedCookies.get('access-token')?.value;
-  console.log(token);
   if (!token) {
     redirect('/login');
   }
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout hasSider style={{ minHeight: '100vh' }}>
       <Sidebar />
       <Layout>
         <Header />
