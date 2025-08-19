@@ -4,8 +4,6 @@ import { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { Nunito_Sans } from 'next/font/google';
 import { getLocale } from 'next-intl/server';
-import { MAIN_COLORS } from '@/services/constants';
-import { CSSProperties } from 'react';
 
 const Nunito = Nunito_Sans({
   subsets: ['latin'],
@@ -22,25 +20,43 @@ const RootLayout = async ({
 }>) => {
   const locale = await getLocale();
   const isRTL = locale === 'ar';
-
-  const lightColors = MAIN_COLORS.light;
-  const htmlStyle = Object.entries(lightColors)
-    .map(([key, value]) => `--c-${key}:${value}`)
-    .join(';');
-
   return (
-    <html
-      lang={locale}
-      dir={isRTL ? 'rtl' : 'ltr'}
-      className={Nunito.className}
-      style={{ '--c-primary': MAIN_COLORS.light.primary, ...{ style: htmlStyle } } as CSSProperties}
-    >
+    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={Nunito.className}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                (function() {
+                const lightTheme = {
+                    primary: '#4880FF',
+                    background: '#F5F6FA',
+                    text: '#202224',
+                    border: '#D5D5D5',
+                    input: '#F5F6FA',
+                    card: '#FFFFFF',
+                    'auth-input': '#f1f4f9',
+                    danger: '#EF3826',
+                    success: '#00B69B',
+                    warning: '#FFA756',
+                    info: '#6226EF',
+                  };
+                
+                const root = document.documentElement;
+                Object.entries(lightTheme).forEach(([key, value]) => {
+                  root.style.setProperty('--c-' + key, value);
+                });
+                
+                // Add smooth transitions for theme changes
+                root.style.setProperty('transition', 'background-color 0.2s ease, color 0.2s ease');
+              })();
+            `,
+          }}
+        />
+      </head>
       <body>
-        <AuthProvider>
-          <NextIntlClientProvider>
-            <UiProvider locale={locale}>{children}</UiProvider>
-          </NextIntlClientProvider>
-        </AuthProvider>
+        <NextIntlClientProvider>
+          <UiProvider locale={locale}>{children}</UiProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@theme inline {
+@theme {
   --breakpoint-md: 769px;
   --color-primary: var(--c-primary);
   --color-secondary: var(--c-secondary);
