@@ -1,10 +1,9 @@
 'use client';
 
-import { Link, linksArray } from '@/services/data';
-import { TrashSimpleIcon } from '@phosphor-icons/react';
+import { Link } from '@/services/data';
 import { Button, Input, message, QRCode, Select, Tag } from 'antd';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Breadcrumb } from 'antd';
 import { useTranslations } from 'next-intl';
 
@@ -15,35 +14,51 @@ const EditLinkPage = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const id = searchParams.get('id');
+  const id = searchParams.get('id') || '0';
 
-  const fetchedLink = linksArray.find((link) => link.id === id);
+  const [link, setLink] = useState<Link>({
+    id: '',
+    name: '',
+    description: '',
+    link: '',
+    tags: [],
+    comments: [],
+  });
 
-  const [link, setLink] = useState<Link>(
-    () =>
-      fetchedLink ?? {
-        id: '',
-        name: '',
-        description: '',
-        link: '',
-        date: '',
-        tags: [],
-        comments: [],
-      }
-  );
+  useEffect(() => {
+    const fetchLink = async () => {
+      fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE02_URL}/rest/v1/links?id=eq.${encodeURIComponent(id)}`,
+        {
+          headers: {
+            apikey: process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY as string,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY}`,
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setLink(data[0]);
+          setQrCode(data[0].link);
+          console.log(data[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    fetchLink();
+  }, []);
+
+  const [qrCode, setQrCode] = useState(link.link);
+
   const [inputValue, setInputValue] = useState('');
   const [localTags, setLocalTags] = useState<string[]>(link.tags || []);
-  const [qrCode, setQrCode] = useState(link.link);
   const [commentsBoxValue, setCommentsBoxValue] = useState('');
 
   const [messageApi, contextHolder] = message.useMessage();
 
   if (!id) {
     return <div className="flex items-center justify-center h-full">⚠ {t('noFileId')}</div>;
-  }
-
-  if (!fetchedLink) {
-    return <div className="flex items-center justify-center h-full">⚠ {t('noFiles')}</div>;
   }
 
   const handleNewTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -65,6 +80,55 @@ const EditLinkPage = () => {
       url = 'https://www.google.com';
     }
     setQrCode(url);
+  };
+
+  const handleSave = async () => {
+    fetch(
+      `${process.env.NEXT_PUBLIC_SUPABASE02_URL}/rest/v1/links?id=eq.${encodeURIComponent(id)}`,
+      {
+        method: 'PATCH',
+        headers: {
+          apikey: process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY as string,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=representation', // get updated row back
+        },
+        body: JSON.stringify(link),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('Inserted:', data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleDelete = async () => {
+    fetch(
+      `${process.env.NEXT_PUBLIC_SUPABASE02_URL}/rest/v1/links?id=eq.${encodeURIComponent(id)}`,
+      {
+        method: 'DELETE',
+        headers: {
+          apikey: process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY as string,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY}`,
+          Prefer: 'return=representation',
+        },
+        body: JSON.stringify(link),
+      }
+    )
+      .then(async (res) => {
+        const data = res.status === 204 ? null : await res.json();
+        if (!res.ok) throw data || new Error('Delete failed');
+        console.log('Deleted:', data);
+        messageApi.success('Deleted');
+        router.push('/links');
+      })
+      .catch((err) => {
+        console.log(err);
+        messageApi.error('Delete failed');
+      });
   };
 
   const folderOptions = [
@@ -96,11 +160,10 @@ const EditLinkPage = () => {
           ]}
           params={{ id: link.name }}
         />
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-1 items-center">
           <Button onClick={handleCopy}>{t('copy')}</Button>
-          <button className="flex items-center justify-between gap-2 bg-card px-3.5 leading-8.5 border border-border rounded-lg cursor-pointer hover:border-danger hover:text-danger translation-all duration-150">
-            <TrashSimpleIcon className="text-danger" size={16} /> {t('delete')}
-          </button>
+          <Button onClick={handleDelete}>{t('delete')}</Button>
+          <Button onClick={handleSave}>Save</Button>
         </div>
       </div>
       <div className="flex gap-4 flex-col md:flex-row mt-6">
@@ -109,7 +172,7 @@ const EditLinkPage = () => {
             <h3 className="ms-0.5 font-semibold">{t('url')}</h3>
             <div className="flex gap-1 items-center">
               <Input
-                defaultValue={link.link}
+                value={link.link}
                 onChange={(e) => setLink((prev) => ({ ...prev, link: e.target.value }))}
               />
               <Button onClick={handleQrCodeGen}>Generate QR Code</Button>
@@ -118,7 +181,7 @@ const EditLinkPage = () => {
           <div className="space-y-1">
             <h3 className="ms-0.5">{t('Name')}</h3>
             <Input
-              defaultValue={link.name}
+              value={link.name}
               onChange={(e) => setLink((prev) => ({ ...prev, name: e.target.value }))}
             />
           </div>
@@ -126,7 +189,7 @@ const EditLinkPage = () => {
             <h3 className="ms-0.5">{t('Description')}</h3>
             <TextArea
               placeholder="Add Description"
-              defaultValue={link.description}
+              value={link.description}
               onChange={(e) => setLink((prev) => ({ ...prev, description: e.target.value }))}
             />
           </div>
@@ -170,11 +233,12 @@ const EditLinkPage = () => {
                   {t('AddComment')}
                 </Button>
               </div>
-              {link?.comments.map((c) => (
-                <p className="bg-background p-2 rounded-lg" key={Date.now()}>
-                  {c}
-                </p>
-              ))}
+              {link.comments &&
+                link.comments.map((c) => (
+                  <p className="bg-background p-2 rounded-lg" key={Date.now()}>
+                    {c}
+                  </p>
+                ))}
             </div>
           </div>
         </div>
@@ -186,8 +250,12 @@ const EditLinkPage = () => {
           <div className="space-y-1">
             <h3 className="ms-0.5">{t('qrCode')}</h3>
             <div className="w-full border border-border p-2 rounded-lg bg-card flex flex-col items-center">
-              <QRCode value={qrCode}></QRCode>
-              <p>{qrCode}</p>
+              {qrCode && (
+                <>
+                  <QRCode value={qrCode}></QRCode>
+                  <p>{qrCode}</p>
+                </>
+              )}
             </div>
           </div>
         </div>
