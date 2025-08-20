@@ -1,24 +1,41 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PageTitle } from '@/components/ui';
 import { Space, Table, Tag, Button, Modal, QRCode, message } from 'antd';
 import type { TableProps } from 'antd';
-import Image from 'next/image';
-import { Link, linksArray } from '@/services/data';
+import { Link } from '@/services/data';
 import { useRouter } from 'next/navigation';
 import { CopyIcon, PencilSimpleLineIcon, QrCodeIcon } from '@phosphor-icons/react';
 import { useTranslations } from 'next-intl';
-
-const data = linksArray;
 
 const LinksPage = () => {
   const t = useTranslations('Links');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [qrCode, setQrCode] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
+  const [data, setData] = useState<Link[]>([]);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchLinks = async () => {
+      fetch(`${process.env.NEXT_PUBLIC_SUPABASE02_URL}/rest/v1/links?select=*`, {
+        headers: {
+          apikey: process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY as string,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    fetchLinks();
+  }, []);
 
   const handleModal = (link: string) => {
     setIsModalOpen(true);

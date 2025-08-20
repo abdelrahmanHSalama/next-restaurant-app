@@ -1,13 +1,11 @@
 'use client';
 
-import { Link, linksArray } from '@/services/data';
-import { TrashSimpleIcon } from '@phosphor-icons/react';
+import { NewLink } from '@/services/data';
 import { Button, Input, message, QRCode, Select, Tag } from 'antd';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Breadcrumb } from 'antd';
 import { useTranslations } from 'next-intl';
-import { computeFromManifest } from 'next/dist/build/utils';
 
 const { TextArea } = Input;
 
@@ -15,15 +13,15 @@ const AddLinkPage = () => {
   const t = useTranslations('Links');
 
   const router = useRouter();
-  const [link, setLink] = useState<Link>({
-    id: '',
+
+  const [link, setLink] = useState<NewLink>({
     name: '',
     description: '',
     link: '',
-    date: '',
     tags: [],
     comments: [],
   });
+
   const [inputValue, setInputValue] = useState('');
   const [localTags, setLocalTags] = useState<string[]>(link.tags || []);
   const [qrCode, setQrCode] = useState('https://www.google.com');
@@ -50,6 +48,26 @@ const AddLinkPage = () => {
       url = 'https://www.google.com';
     }
     setQrCode(url);
+  };
+
+  const handleSubmit = async () => {
+    fetch(`${process.env.NEXT_PUBLIC_SUPABASE02_URL}/rest/v1/links`, {
+      method: 'POST',
+      headers: {
+        apikey: process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY as string,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE02_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+      },
+      body: JSON.stringify(link),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('Submitted:', data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const folderOptions = [
@@ -83,9 +101,7 @@ const AddLinkPage = () => {
         />
         <div className="flex gap-2 items-center">
           <Button onClick={handleCopy}>{t('copy')}</Button>
-          <button className="flex items-center justify-between gap-2 bg-card px-3.5 leading-8.5 border border-border rounded-lg cursor-pointer hover:border-danger hover:text-danger translation-all duration-150">
-            <TrashSimpleIcon className="text-danger" size={16} /> {t('delete')}
-          </button>
+          <Button onClick={handleSubmit}>Submit</Button>
         </div>
       </div>
       <div className="flex gap-4 flex-col md:flex-row mt-6">
