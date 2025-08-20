@@ -102,7 +102,7 @@ const FilesPage = () => {
         dataIndex: 'tags',
         render: (_, { tags }) => (
           <>
-            {tags.map((tag) => {
+            {tags?.map((tag) => {
               let color = tag.length > 5 ? 'geekblue' : 'green';
               if (tag === 'loser') {
                 color = 'volcano';
