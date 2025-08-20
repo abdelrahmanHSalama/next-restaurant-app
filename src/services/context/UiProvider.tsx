@@ -13,7 +13,7 @@ export const UiProvider: React.FC<{ children: React.ReactNode; locale: string }>
   return (
     <DarkLightProvider>
       <ColorsProvider>
-        <AntDProvider locale={locale}>
+        <AntDProvider locale={locale} suppressHydrationWarning={true}>
           <SideBarProvider>{children}</SideBarProvider>
         </AntDProvider>
       </ColorsProvider>
